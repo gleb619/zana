@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "org.test.boris.testapp"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+//    packagingOptions {
+//        exclude 'META-INF/LICENSE'
+//        exclude 'META-INF/NOTICE'
+//        exclude 'META-INF/LICENSE.txt'
+//        exclude 'LICENSE.txt'
+//    }
+    dexOptions {
+        preDexLibraries = false
+    }
+}
+
+repositories {
+    maven {url "https://clojars.org/repo/"}
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //libs
+    compile files('libs/android-support-multidex.jar')
+    //app compat
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:recyclerview-v7:22.2.1'
+    //development
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    apt 'com.squareup.dagger:dagger-compiler:1.2.2'
+    compile 'com.jakewharton:butterknife:7.0.1'
+    //networking
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup.retrofit:converter-jackson:1.9.0'
+    compile 'com.squareup.okhttp:okhttp:2.4.0'
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //jackson
+    //    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.1'
+    //    compile 'com.fasterxml.jackson.core:jackson-core:2.5.1'
+    //    compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.1'
+}
